@@ -1,0 +1,249 @@
+Nmap Scan Results & Security Analysis
+
+TARGET IP: 192.168.1.15
+OPERATING SYSTEM DETECTED: Ubuntu Linux
+
+1. Scan Outputs
+1.1. Pinging the target IP to ensure that it is reachable:
+
+(snipxs㉿kali)-[~]
+└─$ ping -c 4 192.168.110.107
+PING 192.168.110.107 (192.168.110.107) 56(84) bytes of data.
+64 bytes from 192.168.110.107: icmp_seq=1 ttl=255 time=1.75 ms
+64 bytes from 192.168.110.107: icmp_seq=2 ttl=255 time=1.61 ms
+64 bytes from 192.168.110.107: icmp_seq=3 ttl=255 time=2.42 ms
+64 bytes from 192.168.110.107: icmp_seq=4 ttl=255 time=2.00 ms
+
+--- 192.168.110.107 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3062ms
+rtt min/avg/max/mdev = 1.610/1.946/2.417/0.306 ms
+
+1.2. Performing a Basic Scan:
+
+┌──(snipxs㉿kali)-[~]
+└─$ nmap 192.168.110.107
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-06-25 21:11 SAST
+Nmap scan report for 192.168.110.107
+Host is up (0.0037s latency).
+Not shown: 977 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+23/tcp   open  telnet
+25/tcp   open  smtp
+53/tcp   open  domain
+80/tcp   open  http
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+512/tcp  open  exec
+513/tcp  open  login
+514/tcp  open  shell
+1099/tcp open  rmiregistry
+1524/tcp open  ingreslock
+2049/tcp open  nfs
+2121/tcp open  ccproxy-ftp
+3306/tcp open  mysql
+5432/tcp open  postgresql
+5900/tcp open  vnc
+6000/tcp open  X11
+6667/tcp open  irc
+8009/tcp open  ajp13
+8180/tcp open  unknown
+Nmap done: 1 IP address (1 host up) scanned in 6.96 seconds
+
+1.3. Performing a Service Version Scan:
+                                                                             
+┌──(snipxs㉿kali)-[~]
+└─$ nmap -sV 192.168.110.107
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-06-25 21:12 SAST
+Nmap scan report for 192.168.110.107
+Host is up (0.0044s latency).
+Not shown: 977 filtered tcp ports (no-response)
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 2.3.4
+22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+23/tcp   open  telnet      Linux telnetd
+25/tcp   open  smtp        Postfix smtpd
+53/tcp   open  domain      ISC BIND 9.4.2
+80/tcp   open  http        Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+111/tcp  open  rpcbind     2 (RPC #100000)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+512/tcp  open  exec?
+513/tcp  open  login?
+514/tcp  open  tcpwrapped
+1099/tcp open  java-rmi    GNU Classpath grmiregistry
+1524/tcp open  bindshell   Metasploitable root shell
+2049/tcp open  nfs         2-4 (RPC #100003)
+2121/tcp open  ftp         ProFTPD 1.3.1
+3306/tcp open  mysql       MySQL 5.0.51a-3ubuntu5
+5432/tcp open  postgresql  PostgreSQL DB 8.3.0 - 8.3.7
+5900/tcp open  vnc         VNC (protocol 3.3)
+6000/tcp open  X11         (access denied)
+6667/tcp open  irc         UnrealIRCd
+8009/tcp open  ajp13       Apache Jserv (Protocol v1.3)
+8180/tcp open  http        Apache Tomcat/Coyote JSP engine 1.1
+Service Info: Hosts:  metasploitable.localdomain, irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 152.63 seconds
+
+1.4. Performing an OS Detection Scan:
+
+┌──(snipxs㉿kali)-[~]
+└─$ nmap -O 192.168.110.107
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-06-25 21:28 SAST
+Nmap scan report for 192.168.110.107
+Host is up (0.0020s latency).
+Not shown: 977 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+23/tcp   open  telnet
+25/tcp   open  smtp
+53/tcp   open  domain
+80/tcp   open  http
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+512/tcp  open  exec
+513/tcp  open  login
+514/tcp  open  shell
+1099/tcp open  rmiregistry
+1524/tcp open  ingreslock
+2049/tcp open  nfs
+2121/tcp open  ccproxy-ftp
+3306/tcp open  mysql
+5432/tcp open  postgresql
+5900/tcp open  vnc
+6000/tcp open  X11
+6667/tcp open  irc
+8009/tcp open  ajp13
+8180/tcp open  unknown
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: bridge|VoIP adapter|general purpose
+Running (JUST GUESSING): Oracle Virtualbox (98%), Slirp (98%), AT&T embedded (95%), QEMU (94%)
+OS CPE: cpe:/o:oracle:virtualbox cpe:/a:danny_gasparovski:slirp cpe:/a:qemu:qemu
+Aggressive OS guesses: Oracle Virtualbox Slirp NAT bridge (98%), AT&T BGW210 voice gateway (95%), QEMU user mode network gateway (94%)
+No exact OS matches for host (test conditions non-ideal).
+
+OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 10.15 seconds
+                                                     
+2. Port & Service Security Analysis
+
+PORT: 21/tcp
+SERVICE & VERSION: vsftpd 2.3.4
+WHAT IT DOES: FTP (File Transfer Protocol) is used for transferring files between a client and a server on a network.
+SECURITY RISK: This specific version of vsftpd contains a famous, pre-installed malicious backdoor vulnerability (CVE-2011-2523). If an attacker triggers it by sending a specific sequence of characters, it opens an unauthenticated root shell on port 6200, allowing full system compromise.
+
+PORT: 22/tcp
+SERVICE & VERSION: OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+WHAT IT DOES: Secure Shell (SSH) provides a secure, encrypted channel for remote command-line administration and secure data communications.
+SECURITY RISK: While the protocol itself is secure, this version is severely outdated and contains old vulnerabilities. It is highly susceptible to brute-force attacks if weak passwords are used, and user enumeration flaws that allow an attacker to guess valid usernames on the system.
+
+PORT: 23/tcp
+SERVICE & VERSION: Linux telnetd
+WHAT IT DOES: Telnet is a legacy protocol used to provide a command-line interface for communication with a remote device or server.
+SECURITY RISK: Telnet transmits all data—including usernames, passwords, and commands—in absolute plain text. Anyone running a packet capture tool like Wireshark on the local network can easily sniff the traffic and steal administrative credentials.
+
+PORT: 25/tcp
+SERVICE & VERSION: Postfix smtpd
+WHAT IT DOES: Simple Mail Transfer Protocol (SMTP) is used for routing and sending email traffic across networks.
+SECURITY RISK: Older configurations of Postfix are vulnerable to internal user enumeration via commands like VRFY and EXPN. Attackers can use this to map out valid email addresses or system accounts for targeted phishing attacks or brute-force attempts.
+
+PORT: 53/tcp
+SERVICE & VERSION: ISC BIND 9.4.2
+WHAT IT DOES: BIND is the Domain Name System (DNS) server software responsible for translating human-readable domain names into IP addresses.
+SECURITY RISK: This old version of BIND is vulnerable to DNS cache poisoning, denial-of-service (DoS) attacks, and remote memory disclosure exploits, which could allow an attacker to hijack network traffic routing or crash the network's core DNS services.
+
+PORT: 80/tcp
+SERVICE & VERSION: Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+WHAT IT DOES: Hypertext Transfer Protocol (HTTP) serves web content and web applications to users over unencrypted connections.
+SECURITY RISK: The traffic is unencrypted, opening the door for Man-in-the-Middle (MitM) packet sniffing. Additionally, Apache 2.2.8 is prone to multiple older high-severity exploits, including Denial of Service (Slowloris) and directory traversal vulnerabilities.
+
+PORT: 111/tcp
+SERVICE & VERSION: rpcbind 2 (RPC #100000)
+WHAT IT DOES: Rpcbind maps Remote Procedure Call (RPC) services to their respective port numbers so programs can make requests across the network.
+SECURITY RISK: Exposing rpcbind allows external attackers to perform RPC amplification attacks for DDoS, or query the system to map out exact details of internal OS operations and file structures.
+
+PORT: 139/tcp
+SERVICE & VERSION: Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+WHAT IT DOES: Samba provides file and print sharing services utilizing the Server Message Block (SMB) networking protocol.
+SECURITY RISK: Outdated versions of Samba SMBD suffer from severe vulnerabilities like "SambaCry" (remote code execution) and credential spoofing flaws. If weak sharing controls are in place, unauthenticated users can access internal system files.
+
+PORT: 445/tcp
+SERVICE & VERSION: Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+WHAT IT DOES: This port handles SMB traffic directly over TCP without requiring NetBIOS, used primarily for network file sharing.
+SECURITY RISK: Just like port 139, exposing raw SMB over port 445 on an outdated software stack leaves the host open to devastating network worm attacks (similar to the vectors used by WannaCry) and critical authentication bypass exploits.
+
+PORT: 512/tcp
+SERVICE & VERSION: exec?
+WHAT IT DOES: Part of the legacy Berkeley r-services (rexec), used to execute remote commands on the system after authentication.
+SECURITY RISK: It uses unencrypted, plain-text authentication. It relies heavily on host-based trust relationships which are incredibly easy to spoof, making it a frequent target for rapid lateral movement across an unhardened environment.
+
+PORT: 513/tcp
+SERVICE & VERSION: login?
+WHAT IT DOES: Part of the legacy Berkeley r-services (rlogin), allowing users to log in remotely to the Linux terminal.
+SECURITY RISK: Like Telnet and rexec, it transmits session credentials over the wire completely unencrypted. It represents a massive risk of eavesdropping and credentials theft.
+
+PORT: 514/tcp
+SERVICE & VERSION: tcpwrapped
+WHAT IT DOES: Indicates that a service is running behind a TCP Wrapper firewall/security mechanism, which immediately closed the connection after Nmap connected.
+SECURITY RISK: The underlying service itself is hidden, but the presence of legacy ports (512-514) in this state suggests old, unhardened infrastructure protocols are present on the host asset.
+
+PORT: 1099/tcp
+SERVICE & VERSION: java-rmi GNU Classpath grmiregistry
+WHAT IT DOES: Java Remote Method Invocation (RMI) registry allows Java applications to invoke methods on objects running in a different virtual machine.
+SECURITY RISK: Java RMI registries are notoriously unsafe if unconfigured. Attackers can easily exploit standard object deserialization flaws to execute arbitrary malicious code on the target machine without needing valid credentials.
+
+PORT: 1524/tcp
+SERVICE & VERSION: bindshell Metasploitable root shell
+WHAT IT DOES: A bind shell opens up a command listener directly bound to a specific network port on the victim machine.
+SECURITY RISK: This is a critical risk vector. This port hosts a literal backdoor that instantly hands anyone who connects straight to it full root (administrative) access over the command line without asking for a username or a password.
+
+PORT: 2049/tcp
+SERVICE & VERSION: nfs 2-4 (RPC #100003)
+WHAT IT DOES: Network File System (NFS) allows a client machine to mount directories and access files over a network as if they were local.
+SECURITY RISK: If misconfigured (which is common on older variants), NFS shares can be accessed without strict authentication, allowing any remote user to mount the root filesystem and view or modify private system configuration data.
+
+PORT: 2121/tcp
+SERVICE & VERSION: ProFTPD 1.3.1
+WHAT IT DOES: A secondary instance of an FTP server running on a non-standard port to handle automated file uploads or transfers.
+SECURITY RISK: ProFTPD version 1.3.1 contains a severe design flaw in its mod_copy module that allows unauthenticated remote attackers to read and write arbitrary files to the underlying operating system.
+
+PORT: 3306/tcp
+SERVICE & VERSION: MySQL 5.0.51a-3ubuntu5
+WHAT IT DOES: Serves the relational database system used by application backends to store, retrieve, and organize relational data.
+SECURITY RISK: Exposing database endpoints directly to a network scan invites relentless brute-force attacks against administrative database credentials (like root). It also exposes any active application data directly to remote exploitation vulnerabilities.
+
+PORT: 5432/tcp
+SERVICE & VERSION: PostgreSQL DB 8.3.0 - 8.3.7
+WHAT IT DOES: An enterprise-grade object-relational database server hosting application database content.
+SECURITY RISK: Similar to MySQL, direct external exposure of an older database service increases the risk of unauthorized database structural manipulation, injection vectors, and administrative password compromise via dictionary attacks.
+
+PORT: 5900/tcp
+SERVICE & VERSION: VNC (protocol 3.3)
+WHAT IT DOES: Virtual Network Computing (VNC) is a graphical desktop sharing system used to remotely control another computer's UI.
+SECURITY RISK: Old VNC protocols suffer from weak authentication challenges. If a weak password or default authentication bypass exists, an attacker can visually take control of the machine’s entire desktop environment.
+
+PORT: 6000/tcp
+SERVICE & VERSION: X11 (access denied)
+WHAT IT DOES: The X Window System (X11) provides the underlying framework for a graphical user interface layout on Unix-like operating systems.
+SECURITY RISK: While currently returning "access denied", a misconfigured X11 service can allow remote attackers to sniff keystrokes (keylogging) or capture live screenshots of the user's desktop session over the wire.
+
+PORT: 6667/tcp
+SERVICE & VERSION: UnrealIRCd
+WHAT IT DOES: An Internet Relay Chat (IRC) daemon daemon used to handle text-based group communications and chat rooms.
+SECURITY RISK: This particular deployment contains a severe, notorious backdoor exploit (CVE-2010-2075). Sending a command prefixed with the keyword AB allows a remote attacker to execute system commands directly with the permissions of the user running the IRC daemon.
+
+PORT: 8009/tcp
+SERVICE & VERSION: ajp13 Apache Jserv (Protocol v1.3)
+WHAT IT DOES: The Apache JServ Protocol (AJP) acts as an optimized inbound proxy connector to pass requests from a front-end web server into a back-end application container.
+SECURITY RISK: Exposing an unhardened AJP port directly can leave it vulnerable to the "Ghostcat" file inclusion exploit, letting unauthorized remote users read configuration files or webapp source code directly from the host environment.
+
+PORT: 8180/tcp
+SERVICE & VERSION: Apache Tomcat/Coyote JSP engine 1.1
+WHAT IT DOES: An open-source web server and servlet container designed specifically to run Java Server Pages (JSP) applications.
+SECURITY RISK: This legacy Tomcat instance is prone to arbitrary code execution via file uploads. Additionally, standard test installations often feature guessable administrative panel credentials (like admin/admin), which allows an attacker to log in and upload a malicious WAR web shell to take over the serve
