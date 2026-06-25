@@ -1,7 +1,7 @@
 # Task 1: Basic Network Scanning with Nmap
 ## Project Overview
 
-This project demonstrates how Nmap can be used to perform reconnaissance on a local network. The goal is to identify open ports, the services those ports are running, and the operating system of a target machine within a virtual network.
+This project demonstrates how Nmap can be used to perform reconnaissance on a local network. The goal is to identify open ports, the services those ports are running, and the operating system of a target machine within a virtual network. I used a Kali Linux VM as my attack box and used Metasploit 2 as the target machine. These machines were running in my virtual network created by my hypervisor (VirtualBox).
 
 ---
 ## Table of Contents
