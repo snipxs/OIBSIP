@@ -50,4 +50,4 @@ Nmap can be downloaded from the official site: [https://nmap.org/download.html](
 | File / Folder | Description |
 |---|---|
 | `nmap_scan_results.txt` | Detailed analysis of open ports and services discovered |
-| `/Screenshots` | Terminal output screenshots verifying scan execution (`-sV` and `-O` flags) |
+| `/Nmap_Screenshots` | Terminal output screenshots verifying scan execution (`-sV` and `-O` flags) |
