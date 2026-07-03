@@ -31,7 +31,7 @@ Below are the 4 tasks I selected and completed for this track. Click on any task
 ##  Tools & Tech Stack Utilized
 * **Scanning & Reconnaissance:** Nmap
 * **Exploitation Environment:** DVWA (Damn Vulnerable Web Application) running on a local virtualized server
-* **Virtualization:** Local Linux VM 
+* **Virtualization:** Kali Linux VM, Metasploitable 2 (Target VM)
 * **Documentation:** Markdown, Git/GitHub
 
 ---
